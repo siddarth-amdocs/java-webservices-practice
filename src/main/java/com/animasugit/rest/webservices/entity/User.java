@@ -1,10 +1,12 @@
 package com.animasugit.rest.webservices.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
@@ -25,6 +27,9 @@ public class User {
     @Past
     @ApiModelProperty(notes = "Birth date should be in the past")
     private Date birthDate;
+
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts;
 
 
     public User() {
@@ -60,4 +65,13 @@ public class User {
         this.birthDate = birthDate;
     }
 
+
+    public List<Post> getPosts() {
+        return this.posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+    
 }
